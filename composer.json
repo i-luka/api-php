@@ -1,0 +1,18 @@
+{
+    "name": "mozg3000/api_example",
+    "description": "Php api example",
+    "authors": [
+        {
+            "name": "ILukoshnikov",
+            "email": "ilukoshnikov@elar.ru"
+        }
+    ],
+    "require": {
+        "pecee/simple-router": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": ""
+        }
+    }
+}

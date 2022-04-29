@@ -1,0 +1,32 @@
+<?php
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>API PHP</title>
+</head>
+<body>
+<div class="wrapper">
+    <div id=app></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js" integrity="sha512-MNW6IbpNuZZ2VH9ngFhzh6cUt8L/0rSVa60F8L22K1H72ro4Ki3M/816eSDLnhICu7vwH/+/yb8oB3BtBLhMsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hi where',
+        },
+        methods: {},
+        template: `
+        <div>
+        {{message}}
+        </div>
+        `
+    })
+</script>
+</body>
+</html>
