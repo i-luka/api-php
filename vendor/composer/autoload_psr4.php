@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'app\\' => array($baseDir . '/'),
     'Pecee\\' => array($vendorDir . '/pecee/simple-router/src/Pecee'),
+    'Lcobucci\\JWT\\' => array($vendorDir . '/lcobucci/jwt/src'),
 );

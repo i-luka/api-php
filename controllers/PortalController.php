@@ -2,12 +2,10 @@
 
 namespace app\controllers;
 
-class PortalController
+class PortalController extends AbstractController
 {
     public function run()
     {
-        ob_start();
-        include '../views/site/main_page.html';
-        return ob_get_clean();
+        return $this->renderTemplate('../views/site/main_page.html');
     }
 }

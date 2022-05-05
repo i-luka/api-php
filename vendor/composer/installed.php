@@ -1,22 +1,31 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'cf4634545dc3ff6f999f2ae68e8168d417aebc14',
         'name' => 'mozg3000/api_example',
         'dev' => true,
     ),
     'versions' => array(
+        'lcobucci/jwt' => array(
+            'pretty_version' => '3.4.6',
+            'version' => '3.4.6.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../lcobucci/jwt',
+            'aliases' => array(),
+            'reference' => '3ef8657a78278dfeae7707d51747251db4176240',
+            'dev_requirement' => false,
+        ),
         'mozg3000/api_example' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'cf4634545dc3ff6f999f2ae68e8168d417aebc14',
             'dev_requirement' => false,
         ),
         'pecee/simple-router' => array(

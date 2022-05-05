@@ -6,6 +6,12 @@ namespace Composer\Autoload;
 
 class ComposerStaticInite7f583e44972a4da9152d275860bed8e
 {
+    public static $files = array (
+        '256c1545158fc915c75e51a931bdba60' => __DIR__ . '/..' . '/lcobucci/jwt/compat/class-aliases.php',
+        '0d273777b2b0d96e49fb3d800c6b0e81' => __DIR__ . '/..' . '/lcobucci/jwt/compat/json-exception-polyfill.php',
+        'd6b246ac924292702635bb2349f4a64b' => __DIR__ . '/..' . '/lcobucci/jwt/compat/lcobucci-clock-polyfill.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'a' => 
         array (
@@ -14,6 +20,10 @@ class ComposerStaticInite7f583e44972a4da9152d275860bed8e
         'P' => 
         array (
             'Pecee\\' => 6,
+        ),
+        'L' => 
+        array (
+            'Lcobucci\\JWT\\' => 13,
         ),
     );
 
@@ -25,6 +35,10 @@ class ComposerStaticInite7f583e44972a4da9152d275860bed8e
         'Pecee\\' => 
         array (
             0 => __DIR__ . '/..' . '/pecee/simple-router/src/Pecee',
+        ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lcobucci/jwt/src',
         ),
     );
 
