@@ -13,27 +13,6 @@ $builder->useAutowiring(true);
 $builder->addDefinitions($dependencies);
 $container = $builder->build();
 
-define('PROD', false);
-try {
-    Router::start();
-} catch (\app\exceptions\NotAuthorizedHttpException $e) {
-    $response = Router::response();
-    $response->httpCode(401);
-    $response->auth("api-pure");
-} catch (InvalidTokenStructure $e) {
-    $response = Router::response();
-    $response->auth("api-pure");
-    return $response->json([
-        'message' => $e->getMessage()
-    ]);
-} catch (Error $e) {
-    $response = Router::response();
-    $response->httpCode(500);
-    if (!PROD) {
-        return $response->json([
-            'status' => 'error',
-            'code' => 500,
-            'message' => $e->getMessage()
-        ]);
-    }
-}
+define('PROD', true);
+
+Router::start();
