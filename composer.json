@@ -10,7 +10,8 @@
     "require": {
         "pecee/simple-router": "*",
         "lcobucci/jwt": "^3.4",
-        "ext-json": "*"
+        "ext-json": "*",
+        "php-di/php-di": "^6.3"
     },
     "autoload": {
         "psr-4": {

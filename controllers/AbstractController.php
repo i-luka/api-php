@@ -21,17 +21,6 @@ abstract class AbstractController
     {
         $this->request = Router::router()->getRequest();
         $this->response =  new \Pecee\Http\Response($this->request);
-//        $rawBody = file_get_contents('php://input');
-//        if ($rawBody) {
-//            try {
-//                $body = json_decode($rawBody, true);
-//                foreach ($body as $key => $value) {
-//                    $this->request->$key = $value;
-//                }
-//            } catch (\Throwable $e) {
-//
-//            }
-//        }
     }
 
     public function renderTemplate($template) {

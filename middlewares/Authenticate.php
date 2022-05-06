@@ -29,14 +29,16 @@ class Authenticate implements \Pecee\Http\Middleware\IMiddleware
 
         $token = $config->parser()->parse($tokenString);
 
-        if (!$config->validator()->validate($token,
-            new SignedWith(new Sha256(),
-                InMemory::plainText('rkjahnvuirfngnqmnfdjs')),
-            new ValidAt(new FrozenClock(new DateTimeImmutable()))
-        )) {
-//            header('WWW-Authenticate: Bearer realm="api-pure"');
-//            header('HTTP/1.0 401 Unauthorized');
-//            exit;
+        if (
+            !$config->validator()->validate(
+                $token,
+                new SignedWith(
+                    new Sha256(),
+                    InMemory::plainText('rkjahnvuirfngnqmnfdjs')
+                ),
+                new ValidAt(new FrozenClock(new DateTimeImmutable()))
+            )
+        ) {
             throw new NotAuthorizedHttpException();
         }
     }

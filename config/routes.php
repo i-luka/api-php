@@ -2,22 +2,32 @@
 
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
+/** @var $container \DI\Container */
+
 Router::setDefaultNamespace('app\controllers');
+
+
 
 Router::get('/', 'VueController@run');
 
 Router::group([
-    'middleware' => [
-        \app\middlewares\ProccessRawBody::class
-    ]
+    'prefix' => 'api'
 ], function () {
-    Router::post('/api/auth/signin', 'AuthController@signin');
     Router::group([
         'middleware' => [
-            \app\middlewares\Authenticate::class
+            \app\middlewares\ProccessRawBody::class
         ]
     ], function () {
-        Router::post('/api/project', 'AuthController@test');
+        Router::post('/auth/signin', 'AuthController@signin');
+        Router::get('/project', 'ProjectController@index');
+        Router::group([
+            'middleware' => [
+                \app\middlewares\Authenticate::class
+            ]
+        ], function () {
+            // authenticated routes
+            Router::get('/project/create', 'ProjectController@index');
+        });
     });
 });
 
@@ -26,3 +36,4 @@ Router::group([
 
 Router::get('/controller', 'VueController@run')
     ->setMatch('/\/([\w]+)/');
+
