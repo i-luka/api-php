@@ -40,9 +40,4 @@ class AuthController extends AbstractController
             'accessToken' => $token->toString()
         ]);
     }
-
-    public function test()
-    {
-
-    }
 }

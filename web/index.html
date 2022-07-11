@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -18,12 +16,24 @@
     let app = new Vue({
         el: '#app',
         data: {
-            message: 'Hi where',
+            token: null,
         },
-        methods: {},
+        methods: {
+            async handleSignIn () {
+                const res = await axios({
+                    method: 'POST',
+                    url: '/api/v1/auth/sign-in',
+                    body: {/* авторизационные данные тут */},
+                })
+                this.token = res.data.accessToken
+            }
+        },
         template: `
         <div>
-        {{message}}
+          <button
+              v-show="!token"
+              @click="handleSignIn"
+          >Войти</button>
         </div>
         `
     })

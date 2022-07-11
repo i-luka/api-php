@@ -2,9 +2,10 @@
 
 namespace app\middlewares;
 
+use Pecee\Http\Middleware\IMiddleware;
 use Pecee\Http\Request;
 
-class ProccessRawBody implements \Pecee\Http\Middleware\IMiddleware
+class ProccessRawBody implements IMiddleware
 {
 
     /**

@@ -20,7 +20,7 @@ abstract class AbstractController
     public function __construct()
     {
         $this->request = Router::router()->getRequest();
-        $this->response =  new \Pecee\Http\Response($this->request);
+        $this->response =  new Response($this->request);
     }
 
     public function renderTemplate($template) {

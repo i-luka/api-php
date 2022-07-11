@@ -10,9 +10,10 @@ use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use Lcobucci\JWT\Validation\Constraint\ValidAt;
+use Pecee\Http\Middleware\IMiddleware;
 use Pecee\Http\Request;
 
-class Authenticate implements \Pecee\Http\Middleware\IMiddleware
+class Authenticate implements IMiddleware
 {
 
     /**
@@ -39,7 +40,10 @@ class Authenticate implements \Pecee\Http\Middleware\IMiddleware
                 new ValidAt(new FrozenClock(new DateTimeImmutable()))
             )
         ) {
-            throw new NotAuthorizedHttpException();
+            throw new NotAuthorizedHttpException('Токен доступа не валиден или просрочен');
         }
+
+        $userId = $token->claims()->get('uid');
+        $request['uid'] = $userId;
     }
 }

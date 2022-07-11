@@ -11,7 +11,7 @@
         "pecee/simple-router": "*",
         "lcobucci/jwt": "^3.4",
         "ext-json": "*",
-        "php-di/php-di": "^6.3"
+        "vlucas/phpdotenv": "^4.2"
     },
     "autoload": {
         "psr-4": {

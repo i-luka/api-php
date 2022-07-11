@@ -6,6 +6,6 @@ class VueController extends AbstractController
 {
     public function run()
     {
-        return $this->renderTemplate('../views/vue/vue_page.html');
+        return $this->renderTemplate('../views/vue/vue_page.php');
     }
 }

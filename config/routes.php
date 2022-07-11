@@ -1,55 +1,51 @@
 <?php
 
-use app\exceptions\NotAuthorizedHttpException;
-use Lcobucci\JWT\Token\InvalidTokenStructure;
-use Pecee\Http\Request;
-use Pecee\SimpleRouter\SimpleRouter as Router;
+use app\exceptions\{
+    NotAuthorizedHttpException
+};
+use app\middlewares\{
+    Authenticate,
+    ProccessRawBody
+};
+use Pecee\{
+    Http\Request,
+    SimpleRouter\SimpleRouter as Router
+};
 
-/** @var $container \DI\Container */
+const PROD = false;
 
 Router::setDefaultNamespace('app\controllers');
-
-
 
 Router::get('/', 'VueController@run');
 
 Router::group([
-    'prefix' => 'api'
+    'prefix' => 'api/v1',
+    'middleware' => [
+        ProccessRawBody::class
+    ]
 ], function () {
+    Router::post('/auth/sign-in', 'AuthController@signin');
+    Router::get('/project', 'ProjectController@index');
     Router::group([
         'middleware' => [
-            \app\middlewares\ProccessRawBody::class
+            Authenticate::class
         ]
     ], function () {
-        Router::post('/auth/signin', 'AuthController@signin');
-        Router::get('/project', 'ProjectController@index');
-        Router::group([
-            'middleware' => [
-                \app\middlewares\Authenticate::class
-            ]
-        ], function () {
-            // authenticated routes
-            Router::get('/project/create', 'ProjectController@index');
-        });
+        // authenticated routes
+        Router::post('/project/create', 'ProjectController@create');
+        Router::post('/project/update/{id}', 'ProjectController@update')
+            ->where(['id' => '[\d]+']);
     });
 });
-
-//Router::get('/{controller}/{action?}/{slug?}', 'App@run')
-//    ->where(['controller' => '[\w\-]+', 'action' => '[\w\-]+', 'slug' => '[\w\-]+']);
 
 Router::get('/controller', 'VueController@run')
     ->setMatch('/\/([\w]+)/');
 
-Router::error(function(Request $request, \Exception $exception) {
+Router::error(function(Request $request, Exception $exception) {
     $response = Router::response();
     switch (get_class($exception)) {
-        case InvalidTokenStructure::class: {
-            $response->auth("api-pure");
-            break;
-        }
         case NotAuthorizedHttpException::class: {
             $response->httpCode(401);
-            $response->auth("api-pure");
             break;
         }
         case Exception::class: {
@@ -65,13 +61,5 @@ Router::error(function(Request $request, \Exception $exception) {
             'message' => $exception->getMessage()
         ]);
     }
-//    switch($exception->getCode()) {
-//        // Page not found
-//        case 404:
-//            response()->redirect('/not-found');
-//        // Forbidden
-//        case 403:
-//            response()->redirect('/forbidden');
-//    }
 });
 
