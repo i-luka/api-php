@@ -12,7 +12,15 @@ use Pecee\{
     SimpleRouter\SimpleRouter as Router
 };
 
-const PROD = false;
+//const PROD = false;
+return [
+    'defaultNamespace' => 'app\controllers',
+    'routes' => [
+        [
+
+        ]
+    ]
+];
 
 Router::setDefaultNamespace('app\controllers');
 
